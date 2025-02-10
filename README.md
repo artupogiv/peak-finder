@@ -1,18 +1,18 @@
 # Peak Finder
 
-REST API to explore mounts information.
+REST API to explore mountains information.
 
 ## REST API Specification
 
-| Endpoint Path | HTTP Method | Description                             |
-| ------------- | ----------- | --------------------------------------- |
-| `/mounts`     | `GET`       | List all mounts                         |
-| `/mounts/:id` | `GET`       | Get mount by id                         |
-| `/mounts`     | `POST`      | Create new mount                        |
-| `/mounts`     | `DELETE`    | Delete all mounts                       |
-| `/mounts/:id` | `DELETE`    | Delete mount by id                      |
-| `/mounts/:id` | `PATCH`     | Update mount by id                      |
-| `/mounts/:id` | `PUT`       | Update mount by id, create if not exist |
+| Endpoint Path    | HTTP Method | Description                                |
+| ---------------- | ----------- | ------------------------------------------ |
+| `/mountains`     | `GET`       | List all mountains                         |
+| `/mountains/:id` | `GET`       | Get mountain by id                         |
+| `/mountains`     | `POST`      | Create new mountain                        |
+| `/mountains`     | `DELETE`    | Delete all mountains                       |
+| `/mountains/:id` | `DELETE`    | Delete mountain by id                      |
+| `/mountains/:id` | `PATCH`     | Update mountain by id                      |
+| `/mountains/:id` | `PUT`       | Update mountain by id, create if not exist |
 
 ## Get Started
 

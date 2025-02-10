@@ -2,7 +2,7 @@ import { Hono } from "hono";
 
 const app = new Hono();
 
-type Mount = {
+type Mountain = {
   id: number;
   name: string;
   island: string;
@@ -11,7 +11,7 @@ type Mount = {
   status?: string; // active or not active
 };
 
-let mounts: Mount[] = [
+let mountains: Mountain[] = [
   {
     id: 1,
     name: "Gunung Kerinci",
@@ -65,40 +65,45 @@ let mounts: Mount[] = [
 
 app.get("/", (c) => {
   return c.json({
-    message: "Hello World!",
+    message: "Peak Finder API",
   });
 });
 
-// GET /mounts
-app.get("/mounts", (c) => {
-  return c.json(mounts);
+// GET /mountains
+app.get("/mountains", (c) => {
+  return c.json(mountains);
 });
 
-// GET /mounts/:id
-app.get("/mounts/:id", (c) => {
+// GET /mountains/:id
+app.get("/mountains/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const mount = mounts.find((mount) => {
-    return mount.id === id;
+  const mountain = mountains.find((mountain) => {
+    return mountain.id === id;
   });
 
-  if (!mount) {
-    return c.json({ message: "Mount not found" }, 404);
+  if (!mountain) {
+    return c.json({ message: "Mountain not found" }, 404);
   }
 
-  return c.json(mount);
+  return c.json(mountain);
 });
 
-// POST /mounts
-app.post("/mounts", async (c) => {
+// POST /mountains
+app.post("/mountains", async (c) => {
   const body = await c.req.json();
 
-  const newMount = [
-    ...mounts,
-    { ...body, id: mounts[mounts.length - 1].id + 1 },
-  ];
+  const newMountain = {
+    id: mountains[mountains.length - 1].id + 1,
+    ...body,
+  };
 
-  mounts = newMount;
+  mountains = [...mountains, newMountain];
+
+  return c.json({
+    message: "Mountain added",
+    data: newMountain,
+  });
 });
 
 export default app;
