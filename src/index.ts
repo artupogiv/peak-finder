@@ -89,4 +89,16 @@ app.get("/mounts/:id", (c) => {
   return c.json(mount);
 });
 
+// POST /mounts
+app.post("/mounts", async (c) => {
+  const body = await c.req.json();
+
+  const newMount = [
+    ...mounts,
+    { ...body, id: mounts[mounts.length - 1].id + 1 },
+  ];
+
+  mounts = newMount;
+});
+
 export default app;
