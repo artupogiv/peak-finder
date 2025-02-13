@@ -106,4 +106,53 @@ app.post("/mountains", async (c) => {
   });
 });
 
+// DELETE all mountains
+app.delete("/mountains", (c) => {
+  mountains = [];
+
+  return c.json({
+    message: "Mountains deleted",
+  });
+});
+
+// DELETE a mountain by id
+app.delete("/mountains/:id", async (c) => {
+  const id = Number(c.req.param("id"));
+
+  const foundMountain = mountains.find((mountain) => mountain.id === id);
+
+  if (!foundMountain) {
+    return c.json({ message: "Mountain not found" }, 404);
+  }
+
+  const updatedMountains = mountains.filter((m) => m.id !== id);
+
+  mountains = updatedMountains;
+
+  return c.json({ message: "Mountain deleted" });
+});
+
+// PATCH update a mountain by id
+app.patch("/mountains/:id", async (c) => {
+  const id = Number(c.req.param("id"));
+
+  const foundMountain = mountains.find((mountain) => mountain.id === id);
+
+  if (!foundMountain) {
+    return c.json({ message: "Mountain not found" }, 404);
+  }
+
+  const body = await c.req.json();
+
+  const updatedMountain = { ...foundMountain, ...body };
+
+  const updatedMountains = mountains.map((mountain) =>
+    mountain.id === id ? updatedMountain : mountain
+  );
+
+  mountains = updatedMountains;
+
+  return c.json({ message: "Mountains udpated", data: updatedMountains });
+});
+
 export default app;
