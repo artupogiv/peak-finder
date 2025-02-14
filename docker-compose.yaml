@@ -5,3 +5,11 @@ services:
       context: .
     ports:
       - "3000:3000"
+  database:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: peak_finder_user
+      POSTGRES_PASSWORD: peak_finder_password
+      POSTGRES_DB: peak_finder_db
