@@ -1,5 +1,9 @@
+import { PrismaClient } from "@prisma/client";
 import { Hono } from "hono";
 
+const prisma = new PrismaClient({
+  log: ["query"],
+});
 const app = new Hono();
 
 type Mountain = {
@@ -11,7 +15,7 @@ type Mountain = {
   status?: string; // active or not active
 };
 
-let mountains: Mountain[] = [
+let dataMountains: Mountain[] = [
   {
     id: 1,
     name: "Gunung Kerinci",
@@ -66,11 +70,14 @@ let mountains: Mountain[] = [
 app.get("/", (c) => {
   return c.json({
     message: "Peak Finder API",
+    description: "A simple API for peak finder"
   });
 });
 
 // GET /mountains
-app.get("/mountains", (c) => {
+app.get("/mountains", async (c) => {
+  const mountains = await prisma.mountain.findMany()
+
   return c.json(mountains);
 });
 
@@ -78,7 +85,7 @@ app.get("/mountains", (c) => {
 app.get("/mountains/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const mountain = mountains.find((mountain) => {
+  const mountain = dataMountains.find((mountain) => {
     return mountain.id === id;
   });
 
@@ -94,11 +101,11 @@ app.post("/mountains", async (c) => {
   const body = await c.req.json();
 
   const newMountain = {
-    id: mountains[mountains.length - 1].id + 1,
+    id: dataMountains[dataMountains.length - 1].id + 1,
     ...body,
   };
 
-  mountains = [...mountains, newMountain];
+  dataMountains = [...dataMountains, newMountain];
 
   return c.json({
     message: "Mountain added",
@@ -108,7 +115,7 @@ app.post("/mountains", async (c) => {
 
 // DELETE all mountains
 app.delete("/mountains", (c) => {
-  mountains = [];
+  dataMountains = [];
 
   return c.json({
     message: "Mountains deleted",
@@ -119,15 +126,15 @@ app.delete("/mountains", (c) => {
 app.delete("/mountains/:id", async (c) => {
   const id = Number(c.req.param("id"));
 
-  const foundMountain = mountains.find((mountain) => mountain.id === id);
+  const foundMountain = dataMountains.find((mountain) => mountain.id === id);
 
   if (!foundMountain) {
     return c.json({ message: "Mountain not found" }, 404);
   }
 
-  const updatedMountains = mountains.filter((m) => m.id !== id);
+  const updatedMountains = dataMountains.filter((m) => m.id !== id);
 
-  mountains = updatedMountains;
+  dataMountains = updatedMountains;
 
   return c.json({ message: "Mountain deleted" });
 });
@@ -136,7 +143,7 @@ app.delete("/mountains/:id", async (c) => {
 app.patch("/mountains/:id", async (c) => {
   const id = Number(c.req.param("id"));
 
-  const foundMountain = mountains.find((mountain) => mountain.id === id);
+  const foundMountain = dataMountains.find((mountain) => mountain.id === id);
 
   if (!foundMountain) {
     return c.json({ message: "Mountain not found" }, 404);
@@ -146,11 +153,11 @@ app.patch("/mountains/:id", async (c) => {
 
   const updatedMountain = { ...foundMountain, ...body };
 
-  const updatedMountains = mountains.map((mountain) =>
+  const updatedMountains = dataMountains.map((mountain) =>
     mountain.id === id ? updatedMountain : mountain
   );
 
-  mountains = updatedMountains;
+  dataMountains = updatedMountains;
 
   return c.json({ message: "Mountains udpated", data: updatedMountains });
 });
