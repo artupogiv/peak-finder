@@ -14,37 +14,36 @@ datasource db {
 }
 
 model Mountain {
-  id        Int      @id @default(autoincrement())
-  
+  id Int @id @default(autoincrement())
+
   name      String
   elevation Int
-  
+
+  islands   Island[]
+  provinces Province[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  islands Island[]
-  provinces Province[]
 }
 
 model Island {
-  id   Int    @id @default(autoincrement())
-  
+  id Int @id @default(autoincrement())
+
   name String
+
+  mountains Mountain[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  mountains Mountain[]
 }
 
 model Province {
-  id   Int    @id @default(autoincrement())
-  
+  id Int @id @default(autoincrement())
+
   name String
+
+  mountains Mountain[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  mountains Mountain[]
 }
-

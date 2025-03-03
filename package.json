@@ -2,7 +2,10 @@
   "name": "peak-finder",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts"
+    "start": "bun run src/index.ts",
+    "db:migrate": "prisma migrate dev",
+    "db:gen": "prisma generate",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
