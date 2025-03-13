@@ -19,6 +19,8 @@ model Mountain {
 
   name      String @unique @db.VarChar(255)
   elevation Int
+  peak String @unique @db.VarChar(255)
+  routes String[]
 
   islands   Island[]
   provinces Province[]
