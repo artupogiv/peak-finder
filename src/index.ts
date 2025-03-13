@@ -30,9 +30,7 @@ app.get("/mountains/:id", async (c) => {
   const id = Number(c.req.param("id"));
 
   const mountain = await prisma.mountain.findUnique({
-    where: {
-      id,
-    },
+    where: { id },
   });
 
   if (!mountain) {
@@ -86,15 +84,11 @@ app.delete("/mountains/:id", async (c) => {
 
 // PATCH update a mountain by id
 app.patch("/mountains/:id", async (c) => {
-  
   // const id = Number(c.req.param("id"));
-
   // const foundMountain = null;
-
   // if (!foundMountain) {
   //   return c.json({ message: "Mountain not found" }, 404);
   // }
-
   // return c.json({ message: "Mountains udpated" });
 });
 

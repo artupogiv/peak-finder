@@ -1,8 +1,10 @@
 -- CreateTable
 CREATE TABLE "Mountain" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
     "elevation" INTEGER NOT NULL,
+    "peak" VARCHAR(255) NOT NULL,
+    "routes" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -11,8 +13,8 @@ CREATE TABLE "Mountain" (
 
 -- CreateTable
 CREATE TABLE "Island" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -21,8 +23,8 @@ CREATE TABLE "Island" (
 
 -- CreateTable
 CREATE TABLE "Province" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -31,19 +33,25 @@ CREATE TABLE "Province" (
 
 -- CreateTable
 CREATE TABLE "_MountainToProvince" (
-    "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
 
     CONSTRAINT "_MountainToProvince_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
 CREATE TABLE "_IslandToMountain" (
-    "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
 
     CONSTRAINT "_IslandToMountain_AB_pkey" PRIMARY KEY ("A","B")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Mountain_name_key" ON "Mountain"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Mountain_peak_key" ON "Mountain"("peak");
 
 -- CreateIndex
 CREATE INDEX "_MountainToProvince_B_index" ON "_MountainToProvince"("B");
