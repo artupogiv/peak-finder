@@ -12,13 +12,13 @@ app.get("/", (c) => {
 
 // GET /mountains
 app.get("/mountains", async (c) => {
-  // const mountains = await prisma.mountain.findMany();
-
-  // return c.json(mountains);
-
   try {
-    const mountains = await prisma.mountain.findMany();
-
+    const mountains = await prisma.mountain.findMany({
+      include: {
+        island: true,
+        province: true,
+      },
+    });
     return c.json(mountains);
   } catch (error) {
     return c.json({ message: "Failed to fetch mountains" }, 500);
@@ -27,10 +27,14 @@ app.get("/mountains", async (c) => {
 
 // GET /mountains/:id
 app.get("/mountains/:id", async (c) => {
-  const id = Number(c.req.param("id"));
+  const id = c.req.param("id");
 
   const mountain = await prisma.mountain.findUnique({
     where: { id },
+    include: {
+      island: true,
+      province: true,
+    },
   });
 
   if (!mountain) {
@@ -48,6 +52,16 @@ app.post("/mountains", async (c) => {
     data: {
       name: body.name,
       elevation: body.elevation,
+      peak: body.peak,
+      island: {
+        connect: {
+          slug: body.islandSlug ?? undefined, // jawa / sumatera / kalimantan / sulawesi
+        },
+      },
+    },
+    include: {
+      island: true,
+      province: true,
     },
   });
 
@@ -70,10 +84,10 @@ app.delete("/mountains", async (c) => {
 // DELETE a mountain by id
 app.delete("/mountains/:id", async (c) => {
   try {
-    const id = Number(c.req.param("id"));
+    const id = c.req.param("id");
 
     const foundMountain = await prisma.mountain.delete({
-      where: { id: id },
+      where: { id },
     });
 
     return c.json({ message: "Mountain deleted", data: foundMountain }, 200);
