@@ -12,16 +12,29 @@ app.get("/", (c) => {
 
 // GET /mountains
 app.get("/mountains", async (c) => {
-  const mountains = await prisma.mountain.findMany();
+  // const mountains = await prisma.mountain.findMany();
 
-  return c.json(mountains);
-});
+  // return c.json(mountains);
+
+  try {
+    const mountains = await prisma.mountain.findMany();
+
+    return c.json(mountains);
+  } catch (error) {
+    return c.json({ message: "Failed to fetch mountains" }, 500);
+  }
+}
+);
 
 // GET /mountains/:id
-app.get("/mountains/:id", (c) => {
+app.get("/mountains/:id", async (c) => {
   const id = Number(c.req.param("id"));
 
-  const mountain = null;
+  const mountain = await prisma.mountain.findUnique({
+    where: {
+      id,
+    },
+  });
 
   if (!mountain) {
     return c.json({ message: "Mountain not found" }, 404);
@@ -34,7 +47,12 @@ app.get("/mountains/:id", (c) => {
 app.post("/mountains", async (c) => {
   const body = await c.req.json();
 
-  const newMountain = null;
+  const newMountain = await prisma.mountain.create({
+    data: {
+      name: body.name,
+      elevation: body.elevation,
+    },
+  });
 
   return c.json({
     message: "Mountain added",
