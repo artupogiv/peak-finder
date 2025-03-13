@@ -23,8 +23,7 @@ app.get("/mountains", async (c) => {
   } catch (error) {
     return c.json({ message: "Failed to fetch mountains" }, 500);
   }
-}
-);
+});
 
 // GET /mountains/:id
 app.get("/mountains/:id", async (c) => {
@@ -61,38 +60,42 @@ app.post("/mountains", async (c) => {
 });
 
 // DELETE all mountains
-app.delete("/mountains", (c) => {
-  // TODO: Delete via Prisma
+app.delete("/mountains", async (c) => {
+  const result = await prisma.mountain.deleteMany();
 
   return c.json({
+    data: result,
     message: "Mountains deleted",
   });
 });
 
 // DELETE a mountain by id
 app.delete("/mountains/:id", async (c) => {
-  const id = Number(c.req.param("id"));
+  try {
+    const id = Number(c.req.param("id"));
 
-  const foundMountain = null;
+    const foundMountain = await prisma.mountain.delete({
+      where: { id: id },
+    });
 
-  if (!foundMountain) {
+    return c.json({ message: "Mountain deleted", data: foundMountain }, 200);
+  } catch (error) {
     return c.json({ message: "Mountain not found" }, 404);
   }
-
-  return c.json({ message: "Mountain deleted" });
 });
 
 // PATCH update a mountain by id
 app.patch("/mountains/:id", async (c) => {
-  const id = Number(c.req.param("id"));
+  
+  // const id = Number(c.req.param("id"));
 
-  const foundMountain = null;
+  // const foundMountain = null;
 
-  if (!foundMountain) {
-    return c.json({ message: "Mountain not found" }, 404);
-  }
+  // if (!foundMountain) {
+  //   return c.json({ message: "Mountain not found" }, 404);
+  // }
 
-  return c.json({ message: "Mountains udpated" });
+  // return c.json({ message: "Mountains udpated" });
 });
 
 export default app;
