@@ -4,6 +4,7 @@
     "dev": "bun run --hot src/index.ts",
     "build": "bun install && bun db:migrate:deploy && bun db:gen",
     "start": "bun run src/index.ts",
+    "docker:up": "docker-compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:gen": "prisma generate --no-hints",
@@ -11,18 +12,24 @@
     "db:studio": "prisma studio",
     "db:reset": "prisma migrate reset --force"
   },
+  "prisma": {
+    "seed": "bun prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.4.1",
     "hono": "^4.6.20",
     "pg": "^8.13.3",
+    "prisma": "^6.4.1",
+    "underscore": "^1.13.7",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^22.13.8",
+    "@types/underscore": "^1.13.0",
     "@types/pg": "^8.11.11",
     "dotenv": "^16.4.7",
-    "prisma": "^6.4.1",
+    "prettier": "^3.5.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }

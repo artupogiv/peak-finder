@@ -1,3 +1,97 @@
+export const mountains = [
+  {
+    name: "Gunung Kerinci",
+    elevation: 3805,
+    peak: "Puncak Indrapura",
+    routes: ["Kersik Tuo", "Solok Selatan"],
+  },
+  {
+    name: "Gunung Sibayak",
+    elevation: 2212,
+    peak: "Puncak Deleng Pintau",
+    routes: ["Desa Raja Berneh", "Desa Jaranguda", "Jalur 54"],
+  },
+  {
+    name: "Gunung Dempo",
+    elevation: 3159,
+    peak: "Puncak Pagar Alam",
+    routes: ["Kampung IV", "Tugu Rimau", "Jara"],
+  },
+  {
+    name: "Gunung Leuser",
+    elevation: 3404,
+    peak: "Puncak Leuser",
+    routes: ["Kedah", "Agusan", "Meukek"],
+  },
+  {
+    name: "Gunung Slamet",
+    elevation: 3428,
+    peak: "Puncak Surono",
+    routes: ["Bambangan", "Baturraden", "Kaliwadas", "Guci"],
+  },
+  {
+    name: "Gunung Semeru",
+    elevation: 3676,
+    peak: "Puncak Mahameru",
+    routes: ["Ranu Pane", "Watu Rejeng"],
+  },
+  {
+    name: "Gunung Gede",
+    elevation: 2958,
+    peak: "Puncak Mandalawangi",
+    routes: ["Cibodas", "Gunung Putri", "Selabintana"],
+  },
+  {
+    name: "Gunung Agung",
+    elevation: 3141,
+    peak: "Puncak Agung",
+    routes: ["Pura Pasar Agung", "Pura Besakih", "Sebudi"],
+  },
+  {
+    name: "Gunung Rinjani",
+    peak: "Puncak Dewi Anjani",
+    elevation: 3726,
+    routes: [
+      "Sembalun",
+      "Senaru",
+      "Torean",
+      "Timbanuh",
+      "Tetebatu",
+      "Aik Berik",
+    ],
+  },
+  {
+    name: "Gunung Nangi",
+    elevation: 2330,
+    peak: "Puncak Nangi",
+    routes: ["Wae Rebo"],
+  },
+  {
+    name: "Gunung Bukit Raya",
+    elevation: 2278,
+    peak: "Puncak Bukit Raya",
+    routes: ["Desa Tumbang Habanoi", "Desa Rantau Malam"],
+  },
+  {
+    name: "Gunung Latimojong",
+    elevation: 3478,
+    peak: "Puncak Rantemario",
+    routes: ["Karangan"],
+  },
+  {
+    name: "Gunung Binaya",
+    elevation: 3027,
+    peak: "Puncak Binaya",
+    routes: ["Jalur utara (Desa Piliana)", "Jalur selatan (Desa Moso)"],
+  },
+  {
+    name: "Gunung Jaya Wijaya",
+    elevation: 4884,
+    peak: "Puncak Carstensz",
+    routes: ["PT Freeeport Indonesia", "Sugapa", "Ilaga"],
+  },
+];
+
 export const islands = [
   {
     slug: "sumatera",

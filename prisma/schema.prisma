@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["relationJoins"]
 }
 
@@ -15,24 +15,28 @@ datasource db {
 }
 
 model Mountain {
-  id        String @id @default(ulid())
+  id String @id @default(ulid())
 
-  name      String @unique @db.VarChar(255)
+  name      String   @unique @db.VarChar(255)
   elevation Int
-  peak String @unique @db.VarChar(255)
-  routes String[]
+  peak      String   @unique @db.VarChar(255)
+  routes    String[]
 
-  islands   Island[]
-  provinces Province[]
+  islands  Island? @relation(fields: [islandId], references: [id])
+  islandId String?
+
+  provinces  Province? @relation(fields: [provinceId], references: [id])
+  provinceId String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Island {
-  id        String @id @default(ulid())
+  id String @id @default(ulid())
 
-  name      String @db.VarChar(255)
+  slug String @unique
+  name String @db.VarChar(255)
 
   mountains Mountain[]
 
@@ -41,9 +45,10 @@ model Island {
 }
 
 model Province {
-  id        String @id @default(ulid())
+  id String @id @default(ulid())
 
-  name      String @db.VarChar(255)
+  slug String @unique
+  name String @db.VarChar(255)
 
   mountains Mountain[]
 
