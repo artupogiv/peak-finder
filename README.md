@@ -5,12 +5,12 @@ This is a simple REST API project with Hono to provide information about mountai
 Link: [https://peak-finder.artupogiv.com](https://peak-finder.artupogiv.com)
 
 ## Tech Stack
-• Bun
-• Hono
-• TypeScript
-• Docker
-• PostgreSQL
-• Prisma
+- Bun
+- Hono
+- TypeScript
+- Docker
+- PostgreSQL
+- Prisma
 
 ## ER Diagram
 
