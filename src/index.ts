@@ -15,8 +15,8 @@ app.get("/mountains", async (c) => {
   try {
     const mountains = await prisma.mountain.findMany({
       include: {
-        island: true,
         province: true,
+        island: true,
       },
     });
 
@@ -33,8 +33,8 @@ app.get("/mountains/:id", async (c) => {
   const mountain = await prisma.mountain.findUnique({
     where: { id },
     include: {
-      island: true,
       province: true,
+      island: true,
     },
   });
 
@@ -62,8 +62,8 @@ app.post("/mountains", async (c) => {
       },
     },
     include: {
-      island: true,
       province: true,
+      island: true,
     },
   });
 

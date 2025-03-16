@@ -33,8 +33,8 @@ async function main() {
 
     const mountainInput = {
       ...mountainData,
-      island: { connect: { slug: islandSlug } },
       province: { connect: { slug: provinceSlug } },
+      island: { connect: { slug: islandSlug } },
     };
 
     const resultMountain = await prisma.mountain.upsert({
