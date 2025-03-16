@@ -1,6 +1,20 @@
 # Peak Finder
 
-REST API to explore mountains information.
+This is a simple REST API project with Hono to provide information about mountains in Indonesia using PostgreSQL database that connect with Prisma.
+
+Link: [https://peak-finder.artupogiv.com](https://peak-finder.artupogiv.com)
+
+## Tech Stack
+• Bun
+• Hono
+• TypeScript
+• Docker
+• PostgreSQL
+• Prisma
+
+## ER Diagram
+
+![ER Diagram](./assets/Peak%20Finder%20API.png)
 
 ## REST API Specification
 
