@@ -34,14 +34,11 @@ async function main() {
     await prisma.mountain.create({
       data: {
         ...mountain,
-        islands: {
-          connect: sample(resultIslands, 1),
-        },
-        provinces: {
-          connect: sample(resultProvinces, 1),
+        islandSlug: islands.slug,
+        provinceSlug: provinces.slug,
       },
-    }
-    });
+    })
+    };
 
     console.log(`Mountains data created`);
 }
