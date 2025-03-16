@@ -5,7 +5,7 @@ const app = new Hono();
 
 app.get("/", (c) => {
   return c.json({
-    message: "Peak Finder API",
+    message: "⛰️ Peak Finder API",
     description: "A simple API for peak finder",
   });
 });
