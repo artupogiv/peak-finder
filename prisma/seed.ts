@@ -1,12 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import { sample } from "underscore";
 import { islands, provinces, mountains } from "./data";
 
 const prisma = new PrismaClient();
 
 async function main() {
   for (const island of islands) {
-    const resultIslands = await prisma.island.upsert({
+    const resultIsland = await prisma.island.upsert({
       where: {
         slug: island.slug,
       },
@@ -14,11 +13,11 @@ async function main() {
       create: island,
     });
 
-    console.log(`Island data created`);
+    console.log(`🏝️ Island: ${resultIsland.name}`);
   }
 
   for (const province of provinces) {
-    const resultProvinces = await prisma.province.upsert({
+    const resultProvince = await prisma.province.upsert({
       where: {
         slug: province.slug,
       },
@@ -26,21 +25,22 @@ async function main() {
       create: province,
     });
 
-    console.log(`Province data created`);
+    console.log(`📜 Province: ${resultProvince.name}`);
   }
 
-  
   for (const mountain of mountains) {
-    await prisma.mountain.create({
-      data: {
-        ...mountain,
-        islandSlug: islands.slug,
-        provinceSlug: provinces.slug,
-      },
-    })
-    };
+    const { islandSlug, provinceSlug, ...mountainData } = mountain;
 
-    console.log(`Mountains data created`);
+    const resultMountain = await prisma.mountain.create({
+      data: {
+        ...mountainData,
+        island: { connect: { slug: islandSlug } },
+        province: { connect: { slug: provinceSlug } },
+      },
+    });
+
+    console.log(`⛰️ Mountain: ${resultMountain.name}`);
+  }
 }
 
 main()

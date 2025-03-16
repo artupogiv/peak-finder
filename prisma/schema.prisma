@@ -22,10 +22,10 @@ model Mountain {
   peak      String   @unique @db.VarChar(255)
   routes    String[]
 
-  islands  Island? @relation(fields: [islandId], references: [id])
+  island   Island? @relation(fields: [islandId], references: [id])
   islandId String?
 
-  provinces  Province? @relation(fields: [provinceId], references: [id])
+  province   Province? @relation(fields: [provinceId], references: [id])
   provinceId String?
 
   createdAt DateTime @default(now())
