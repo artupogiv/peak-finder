@@ -8,6 +8,14 @@ export const mountains = [
     provinceSlug: "jambi",
   },
   {
+    name: "Gunung Marapi",
+    elevation: 2891,
+    peak: "Puncak Garuda",
+    routes: ["Koto Baru", "Batu Palano", "Aia Angek", "Pariangan"],
+    islandSlug: "sumatera",
+    provinceSlug: "sumatera-barat",
+  },
+  {
     name: "Gunung Sibayak",
     elevation: 2212,
     peak: "Puncak Deleng Pintau",
@@ -107,8 +115,8 @@ export const mountains = [
     elevation: 3027,
     peak: "Puncak Binaya",
     routes: ["Jalur utara (Desa Piliana)", "Jalur selatan (Desa Moso)"],
-    islandSlug: "papua",
-    provinceSlug: "papua",
+    islandSlug: "maluku",
+    provinceSlug: "maluku",
   },
   {
     name: "Gunung Jaya Wijaya",
@@ -116,7 +124,7 @@ export const mountains = [
     peak: "Puncak Carstensz",
     routes: ["PT Freeeport Indonesia", "Sugapa", "Ilaga"],
     islandSlug: "papua",
-    provinceSlug: "papua",
+    provinceSlug: "papua-tengah",
   },
 ];
 
