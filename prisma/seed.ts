@@ -31,12 +31,16 @@ async function main() {
   for (const mountain of mountains) {
     const { islandSlug, provinceSlug, ...mountainData } = mountain;
 
-    const resultMountain = await prisma.mountain.create({
-      data: {
-        ...mountainData,
-        island: { connect: { slug: islandSlug } },
-        province: { connect: { slug: provinceSlug } },
-      },
+    const mountainInput = {
+      ...mountainData,
+      island: { connect: { slug: islandSlug } },
+      province: { connect: { slug: provinceSlug } },
+    };
+
+    const resultMountain = await prisma.mountain.upsert({
+      where: { name: mountainData.name },
+      create: mountainInput,
+      update: mountainInput,
     });
 
     console.log(`⛰️ Mountain: ${resultMountain.name}`);
