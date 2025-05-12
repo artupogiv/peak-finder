@@ -1,7 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
 import { MountainsSchema } from "../schema/mountain";
-import { ParamIdSchema } from "../schema/common";
+import { ParamIdSchema, ParamSlugSchema } from "../schema/common";
 
 export const mountainRoutes = new OpenAPIHono();
 
@@ -45,7 +45,7 @@ mountainRoutes.openapi(
 mountainRoutes.openapi(
   createRoute({
     method: "get",
-    path: "/:id",
+    path: "/id/{id}",
     tags: ["Mountains"],
     summary: "Get a mountain by id",
     description: "Get a mountain by id",
@@ -53,7 +53,7 @@ mountainRoutes.openapi(
     responses: {
       200: {
         content: { "application/json": { schema: MountainsSchema } },
-        description: "Success",
+        description: "Success get a mountain by id",
       },
       400: {
         description: "Mountains not found",
@@ -61,18 +61,57 @@ mountainRoutes.openapi(
     },
   }),
   async (c) => {
+    const { id } = c.req.valid("param");
     const mountains = await prisma.mountain.findUnique({
-      where: { id: c.req.param("id") },
+      where: { id },
       include: {
         province: true,
         island: true,
       },
     });
+
     if (!mountains) {
       return c.json({ message: "Mountain not found" }, 404);
     }
 
     return c.json(mountains);
+  }
+);
+
+// Get a mountain by slug
+mountainRoutes.openapi(
+  createRoute({
+    method: "get",
+    path: "/{slug}",
+    tags: ["Mountains"],
+    summary: "Get a mountain by slug",
+    description: "Get a mountain by slug",
+    request: { params: ParamSlugSchema },
+    responses: {
+      200: {
+        content: { "application/json": { schema: MountainsSchema } },
+        description: "Success get a mountain by slug",
+      },
+      400: {
+        description: "Mountain not found",
+      },
+    },
+  }),
+  async (c) => {
+    const { slug } = c.req.valid("param");
+    const mountain = await prisma.mountain.findUnique({
+      where: { slug },
+      include: {
+        province: true,
+        island: true,
+      },
+    });
+
+    if (!mountain) {
+      return c.json({ message: "Mountain not found" }, 404);
+    }
+
+    return c.json(mountain);
   }
 );
 
