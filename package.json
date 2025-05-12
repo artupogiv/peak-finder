@@ -16,18 +16,17 @@
     "seed": "bun prisma/seed.ts"
   },
   "dependencies": {
+    "@hono/zod-openapi": "^0.19.6",
     "@prisma/client": "^6.4.1",
+    "@scalar/hono-api-reference": "^0.8.8",
     "hono": "^4.6.20",
-    "pg": "^8.13.3",
     "prisma": "^6.4.1",
-    "underscore": "^1.13.7",
-    "zod": "^3.24.2"
+    "underscore": "^1.13.7"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^22.13.8",
     "@types/underscore": "^1.13.0",
-    "@types/pg": "^8.11.11",
     "dotenv": "^16.4.7",
     "prettier": "^3.5.1",
     "tsx": "^4.19.3",
