@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { islands, provinces, mountains } from "./data/mountains";
+import { mountains } from "./data/mountains";
+import { islands } from "./data/islands";
+import { provinces } from "./data/provinces";
 
 const prisma = new PrismaClient();
 
