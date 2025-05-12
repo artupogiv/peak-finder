@@ -18,6 +18,7 @@ model Mountain {
   id String @id @default(ulid())
 
   name      String   @unique @db.VarChar(255)
+  slug      String   @unique
   elevation Int
   peak      String   @unique @db.VarChar(255)
   routes    String[]

@@ -1,6 +1,7 @@
 export const mountains = [
   {
     name: "Gunung Kerinci",
+    slug: "gunung-kerinci",
     elevation: 3805,
     peak: "Puncak Indrapura",
     routes: ["Kersik Tuo", "Solok Selatan"],
@@ -9,6 +10,7 @@ export const mountains = [
   },
   {
     name: "Gunung Marapi",
+    slug: "gunung-marapi",
     elevation: 2891,
     peak: "Puncak Garuda",
     routes: ["Koto Baru", "Batu Palano", "Aia Angek", "Pariangan"],
@@ -17,6 +19,7 @@ export const mountains = [
   },
   {
     name: "Gunung Sibayak",
+    slug: "gunung-sibayak",
     elevation: 2212,
     peak: "Puncak Deleng Pintau",
     routes: ["Desa Raja Berneh", "Desa Jaranguda", "Jalur 54"],
@@ -25,6 +28,7 @@ export const mountains = [
   },
   {
     name: "Gunung Dempo",
+    slug: "gunung-dempo",
     elevation: 3159,
     peak: "Puncak Pagar Alam",
     routes: ["Kampung IV", "Tugu Rimau", "Jara"],
@@ -33,6 +37,7 @@ export const mountains = [
   },
   {
     name: "Gunung Leuser",
+    slug: "gunung-leuser",
     elevation: 3404,
     peak: "Puncak Leuser",
     routes: ["Kedah", "Agusan", "Meukek"],
@@ -41,6 +46,7 @@ export const mountains = [
   },
   {
     name: "Gunung Slamet",
+    slug: "gunung-slamet",
     elevation: 3428,
     peak: "Puncak Surono",
     routes: ["Bambangan", "Baturraden", "Kaliwadas", "Guci"],
@@ -49,6 +55,7 @@ export const mountains = [
   },
   {
     name: "Gunung Semeru",
+    slug: "gunung-semeru",
     elevation: 3676,
     peak: "Puncak Mahameru",
     routes: ["Ranu Pane", "Watu Rejeng"],
@@ -57,6 +64,7 @@ export const mountains = [
   },
   {
     name: "Gunung Gede",
+    slug: "gunung-gede",
     elevation: 2958,
     peak: "Puncak Mandalawangi",
     routes: ["Cibodas", "Gunung Putri", "Selabintana"],
@@ -65,6 +73,7 @@ export const mountains = [
   },
   {
     name: "Gunung Agung",
+    slug: "gunung-agung",
     elevation: 3141,
     peak: "Puncak Agung",
     routes: ["Pura Pasar Agung", "Pura Besakih", "Sebudi"],
@@ -73,6 +82,7 @@ export const mountains = [
   },
   {
     name: "Gunung Rinjani",
+    slug: "gunung-rinjani",
     peak: "Puncak Dewi Anjani",
     elevation: 3726,
     routes: [
@@ -88,6 +98,7 @@ export const mountains = [
   },
   {
     name: "Gunung Nangi",
+    slug: "gunung-nangi",
     elevation: 2330,
     peak: "Puncak Nangi",
     routes: ["Wae Rebo"],
@@ -96,6 +107,7 @@ export const mountains = [
   },
   {
     name: "Gunung Bukit Raya",
+    slug: "gunung-bukit-raya",
     elevation: 2278,
     peak: "Puncak Bukit Raya",
     routes: ["Desa Tumbang Habanoi", "Desa Rantau Malam"],
@@ -104,6 +116,7 @@ export const mountains = [
   },
   {
     name: "Gunung Latimojong",
+    slug: "gunung-latimojong",
     elevation: 3478,
     peak: "Puncak Rantemario",
     routes: ["Karangan"],
@@ -112,6 +125,7 @@ export const mountains = [
   },
   {
     name: "Gunung Binaya",
+    slug: "gunung-binaya",
     elevation: 3027,
     peak: "Puncak Binaya",
     routes: ["Jalur utara (Desa Piliana)", "Jalur selatan (Desa Moso)"],
@@ -120,6 +134,7 @@ export const mountains = [
   },
   {
     name: "Gunung Jaya Wijaya",
+    slug: "gunung-jaya-wijaya",
     elevation: 4884,
     peak: "Puncak Carstensz",
     routes: ["PT Freeeport Indonesia", "Sugapa", "Ilaga"],
