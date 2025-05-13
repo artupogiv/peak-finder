@@ -2,12 +2,14 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { Scalar } from "@scalar/hono-api-reference";
 import { cors } from "hono/cors";
 import { mountainRoutes } from "./routes/mountain";
+import { islandRoutes } from "./routes/island";
 
 const app = new OpenAPIHono();
 
 app.use(cors());
 
 app.route("/mountains", mountainRoutes);
+app.route("/islands", islandRoutes);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
