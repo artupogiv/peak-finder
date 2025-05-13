@@ -5,12 +5,14 @@ import { ParamIdSchema, ParamSlugSchema } from "../schema/common";
 
 export const mountainRoutes = new OpenAPIHono();
 
+const tags = ["Mountains"];
+
 // Get all mountains
 mountainRoutes.openapi(
   createRoute({
     method: "get",
     path: "/",
-    tags: ["Mountains"],
+    tags,
     summary: "Get all mountains",
     description: "Get all mountains",
     responses: {
@@ -34,7 +36,7 @@ mountainRoutes.openapi(
 
       return c.json(mountains);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error fetching mountains", error);
 
       return c.json({ message: "Failed to fetch mountains" }, 500);
     }
@@ -46,7 +48,7 @@ mountainRoutes.openapi(
   createRoute({
     method: "get",
     path: "/id/{id}",
-    tags: ["Mountains"],
+    tags,
     summary: "Get a mountain by id",
     description: "Get a mountain by id",
     request: { params: ParamIdSchema },
@@ -83,7 +85,7 @@ mountainRoutes.openapi(
   createRoute({
     method: "get",
     path: "/{slug}",
-    tags: ["Mountains"],
+    tags,
     summary: "Get a mountain by slug",
     description: "Get a mountain by slug",
     request: { params: ParamSlugSchema },
