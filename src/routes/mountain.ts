@@ -14,7 +14,7 @@ mountainRoutes.openapi(
     path: "/",
     tags,
     summary: "Get all mountains",
-    description: "Get all mountains",
+    description: "Each mountain include province and island",
     responses: {
       200: {
         content: { "application/json": { schema: MountainsSchema } },
@@ -50,7 +50,7 @@ mountainRoutes.openapi(
     path: "/id/{id}",
     tags,
     summary: "Get a mountain by id",
-    description: "Get a mountain by id",
+    description: "A mountain include province and island",
     request: { params: ParamIdSchema },
     responses: {
       200: {
