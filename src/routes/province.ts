@@ -1,6 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { ProvincesSchema } from "../schema/province";
 import { prisma } from "../lib/prisma";
+import { ParamSlugSchema } from "../schema/common";
 
 export const provinceRoutes = new OpenAPIHono();
 
@@ -12,11 +13,11 @@ provinceRoutes.openapi(
     method: "get",
     path: "/",
     tags,
-    summary: "Get all provinces",
+    description: "Each provinces include mountains",
     responses: {
       200: {
         content: { "application/json": { schema: ProvincesSchema } },
-        description: "Success",
+        description: "Success get all provinces include mountains",
       },
       400: {
         description: "Provinces not found",
@@ -33,5 +34,38 @@ provinceRoutes.openapi(
 
       return c.json({ message: "Provinces not found" }, 404);
     }
+  }
+);
+
+//Get a province by slug
+provinceRoutes.openapi(
+  createRoute({
+    method: "get",
+    path: "/{slug}",
+    tags,
+    summary: "Get a province by slug",
+    description: "A province include mountains",
+    request: { params: ParamSlugSchema },
+    responses: {
+      200: {
+        content: { "application/json": { schema: ProvincesSchema } },
+        description: "Success get a province by slug",
+      },
+      400: {
+        description: "Province not found",
+      },
+    },
+  }),
+  async (c) => {
+    const { slug } = c.req.valid("param");
+    const province = await prisma.province.findUnique({
+      where: { slug },
+    });
+
+    if (!province) {
+      return c.json({ message: "Province not found" }, 404);
+    }
+
+    return c.json(province);
   }
 );
