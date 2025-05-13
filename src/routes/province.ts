@@ -13,6 +13,7 @@ provinceRoutes.openapi(
     method: "get",
     path: "/",
     tags,
+    summary: "Get all provinces",
     description: "Each provinces include mountains",
     responses: {
       200: {
