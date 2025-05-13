@@ -3,6 +3,7 @@ import { Scalar } from "@scalar/hono-api-reference";
 import { cors } from "hono/cors";
 import { mountainRoutes } from "./routes/mountain";
 import { islandRoutes } from "./routes/island";
+import { provinceRoutes } from "./routes/province";
 
 const app = new OpenAPIHono();
 
@@ -10,6 +11,7 @@ app.use(cors());
 
 app.route("/mountains", mountainRoutes);
 app.route("/islands", islandRoutes);
+app.route("/provinces", provinceRoutes);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
