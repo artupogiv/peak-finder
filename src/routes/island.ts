@@ -1,6 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
 import { IslandsSchema } from "../schema/island";
+import { ParamSlugSchema } from "../schema/common";
 
 export const islandRoutes = new OpenAPIHono();
 
@@ -38,5 +39,41 @@ islandRoutes.openapi(
 
       return c.json({ message: "Islands not found" }, 404);
     }
+  }
+);
+
+//Get an island by slug
+islandRoutes.openapi(
+  createRoute({
+    method: "get",
+    path: "/{slug}",
+    tags,
+    summary: "Get an island by slug",
+    description: "An island include mountains",
+    request: { params: ParamSlugSchema },
+    responses: {
+      200: {
+        content: { "application/json": { schema: IslandsSchema } },
+        description: "Success get an island by slug",
+      },
+      400: {
+        description: "Island not found",
+      },
+    },
+  }),
+  async (c) => {
+    const { slug } = c.req.valid("param");
+    const island = await prisma.island.findUnique({
+      where: { slug },
+      include: {
+        mountains: true,
+      },
+    });
+
+    if (!island) {
+      return c.json({ message: "Island not found" }, 404);
+    }
+
+    return c.json(island);
   }
 );
