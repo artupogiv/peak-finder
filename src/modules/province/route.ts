@@ -3,12 +3,12 @@ import { ProvincesSchema } from "./schema";
 import { prisma } from "../../lib/prisma";
 import { ParamSlugSchema } from "../shared/schema";
 
-export const provinceRoutes = new OpenAPIHono();
+export const provincesRoute = new OpenAPIHono();
 
 const tags = ["Provinces"];
 
 // Get all provinces
-provinceRoutes.openapi(
+provincesRoute.openapi(
   createRoute({
     method: "get",
     path: "/",
@@ -39,7 +39,7 @@ provinceRoutes.openapi(
 );
 
 //Get a province by slug
-provinceRoutes.openapi(
+provincesRoute.openapi(
   createRoute({
     method: "get",
     path: "/{slug}",

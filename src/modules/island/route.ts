@@ -1,14 +1,15 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { prisma } from "../lib/prisma";
-import { IslandsSchema } from "../schema/island";
-import { ParamSlugSchema } from "../schema/common";
+import { prisma } from "../../lib/prisma";
 
-export const islandRoutes = new OpenAPIHono();
+import { ParamSlugSchema } from "../shared/schema";
+import { IslandsSchema } from "./schema";
+
+export const islandsRoute = new OpenAPIHono();
 
 const tags = ["Islands"];
 
 //Get all islands
-islandRoutes.openapi(
+islandsRoute.openapi(
   createRoute({
     method: "get",
     path: "/",
@@ -43,7 +44,7 @@ islandRoutes.openapi(
 );
 
 //Get an island by slug
-islandRoutes.openapi(
+islandsRoute.openapi(
   createRoute({
     method: "get",
     path: "/{slug}",
