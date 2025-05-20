@@ -1,9 +1,9 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { Scalar } from "@scalar/hono-api-reference";
 import { cors } from "hono/cors";
-import { mountainRoutes } from "./routes/mountain";
-import { islandRoutes } from "./routes/island";
-import { provinceRoutes } from "./routes/province";
+import { islandRoutes } from "./modules/island/route";
+import { mountainRoutes } from "./modules/mountain/schema";
+import { provinceRoutes } from "./modules/province/route";
 
 const app = new OpenAPIHono();
 

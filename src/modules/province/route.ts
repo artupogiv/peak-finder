@@ -1,7 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { ProvincesSchema } from "../schema/province";
-import { prisma } from "../lib/prisma";
-import { ParamSlugSchema } from "../schema/common";
+import { ProvincesSchema } from "./schema";
+import { prisma } from "../../lib/prisma";
+import { ParamSlugSchema } from "../shared/schema";
 
 export const provinceRoutes = new OpenAPIHono();
 

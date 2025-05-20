@@ -1,7 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { prisma } from "../lib/prisma";
-import { MountainsSchema } from "../schema/mountain";
-import { ParamIdSchema, ParamSlugSchema } from "../schema/common";
+import { prisma } from "../../lib/prisma";
+import { MountainsSchema } from "./route";
+import { ParamIdSchema, ParamSlugSchema } from "../shared/schema";
 
 export const mountainRoutes = new OpenAPIHono();
 
