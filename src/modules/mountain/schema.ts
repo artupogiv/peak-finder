@@ -11,3 +11,10 @@ export const MountainSchema = z.object({
 });
 
 export const MountainsSchema = z.array(MountainSchema);
+
+export const CreateMountainSchema = MountainSchema.omit({
+  id: true,
+  slug: true,
+  createdAt: true,
+  updatedAt: true,
+});
