@@ -4,12 +4,13 @@
     "dev": "bun run --hot src/index.ts",
     "build": "bun install && bun db:migrate:deploy && bun db:gen",
     "start": "bun run src/index.ts",
-    "docker:up": "docker-compose up -d",
+    "db:up": "docker-compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:gen": "prisma generate --no-hints",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
+    "prod:db:studio": "dotenv -e .env.prod prisma studio --browser none",
     "db:reset": "prisma migrate reset --force"
   },
   "prisma": {
@@ -17,12 +18,14 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.19.6",
-    "@prisma/client": "^6.8.2",
+    "@prisma/client": "^6.10.1",
     "@scalar/hono-api-reference": "^0.8.10",
     "hono": "^4.7.10",
     "prisma": "^6.8.2",
+    "prisma-dbml-generator": "^0.12.0",
     "slugify": "^1.6.6",
-    "underscore": "^1.13.7"
+    "underscore": "^1.13.7",
+    "zod-prisma-types": "^3.2.4"
   },
   "devDependencies": {
     "@types/bun": "latest",
