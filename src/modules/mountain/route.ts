@@ -117,6 +117,7 @@ mountainsRoute.openapi(
   }
 );
 
+// Add new mountain
 // // POST /mountains
 // mountainRoutes.post("/mountains", async (c) => {
 //   const body = await c.req.json();

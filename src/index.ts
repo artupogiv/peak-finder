@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import { islandsRoute } from "./modules/island/route";
 import { mountainsRoute } from "./modules/mountain/route";
 import { provincesRoute } from "./modules/province/route";
+import { searchRoute } from "./modules/shared/route";
 
 const app = new OpenAPIHono();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.route("/mountains", mountainsRoute);
 app.route("/islands", islandsRoute);
 app.route("/provinces", provincesRoute);
+app.route("/search", searchRoute);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
