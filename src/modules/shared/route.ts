@@ -1,6 +1,5 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { SearchSchema } from "./schema";
-import { where } from "underscore";
 import { prisma } from "../../lib/prisma";
 
 export const searchRoute = new OpenAPIHono();
@@ -63,7 +62,7 @@ searchRoute.openapi(
 
       return c.json({ mountains, provinces, islands }, 200);
     } catch (error) {
-      return c.json({ message: "Search not found" }, 404);
+      return c.json({ error }, 404);
     }
   }
 );
